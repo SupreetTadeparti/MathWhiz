@@ -7,8 +7,8 @@ import "./index.css";
 import Landing from "./routes/Landing";
 
 // Auth0 configuration (replace these with your own values from the Auth0 dashboard)
-const domain = import.meta.env.VITE_REACT_APP_AUTH0_DOMAIN!;
-const clientId = import.meta.env.VITE_REACT_APP_AUTH0_CLIENT_ID!;
+const domain = "dev-cu6cl376vgb1h4vt.us.auth0.com";
+const clientId = "KktsDhjl32lxQjOUG8mfI4qPhIvGaB7Z";
 const redirectUri = window.location.origin;
 
 const router = createBrowserRouter([
