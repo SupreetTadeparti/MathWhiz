@@ -4,3 +4,5 @@ package-lock.json
 /server/__pycache__
 .env
 /server/results
+.venv
+
