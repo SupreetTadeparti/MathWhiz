@@ -1,3 +1,4 @@
 node_modules
+package-lock.json
 /server/media
 /server/__pycache__
