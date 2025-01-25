@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react"; // Import Auth0Provider
 import Home from "./routes/Home";
 import "./index.css";
+import Landing from "./routes/Landing";
 
 // Auth0 configuration (replace these with your own values from the Auth0 dashboard)
 const domain = import.meta.env.VITE_REACT_APP_AUTH0_DOMAIN!;
@@ -12,8 +13,12 @@ const redirectUri = window.location.origin;
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/app",
     element: <Home />,
+  },
+  {
+    path: "/",
+    element: <Landing />,
   },
 ]);
 

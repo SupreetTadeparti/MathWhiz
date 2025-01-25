@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Background from "../components/Background";
+import CoverButton from "../components/CoverButton";
 
 const Home: React.FC = () => {
   return (
@@ -17,9 +18,7 @@ const Home: React.FC = () => {
           type="text"
           placeholder="What would you like to understand?"
         />
-        <button className="generate-btn w-80 text-lg text-white py-3 px-5 cursor-pointer border-amber-600 border-3">
-          Generate Visual Explanation
-        </button>
+        <CoverButton content="Generate Visual Explanation" />
       </div>
     </>
   );
