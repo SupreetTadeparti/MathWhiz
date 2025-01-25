@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
+
 *,
 *::before,
 *::after {
+  font-family: "Funnel Sans", sans-serif;
   box-sizing: border-box;
 }
 
