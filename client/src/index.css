@@ -18,3 +18,25 @@ body,
   height: 5px;
   background-color: #eee;
 }
+
+.generate-btn {
+  position: relative;
+}
+
+.generate-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: oklch(0.666 0.179 58.318);
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s;
+}
+
+.generate-btn:hover::after {
+  transform: scaleX(1);
+}
