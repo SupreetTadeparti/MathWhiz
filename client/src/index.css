@@ -11,3 +11,10 @@ body,
 #root {
   height: 100%;
 }
+
+.menu-line {
+  border-radius: 2px;
+  width: 30px;
+  height: 5px;
+  background-color: #000;
+}
