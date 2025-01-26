@@ -7,7 +7,15 @@ import subprocess
 import tempfile
 import uuid
 from datetime import datetime
+import ast
 
+def is_valid_python(code: str) -> bool:
+    try:
+        ast.parse(code)
+        return True
+    except SyntaxError as e:
+        print(f"SyntaxError in generated script: {e}")
+        return False
 class ManimModel():
     def __init__(self):
         self.tokenizer = AutoTokenizer.from_pretrained("./fine-tuned-DeepSeek-R1-Distill-Llama-8B-adapters")
@@ -29,10 +37,16 @@ class ManimModel():
             num_return_sequences=1,
         )
         generated_text = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
-        return generated_text.strip()
+        return generated_text.split('\\n', 1)[1].lstrip()
 
     def execute_animation(self, script_content, output_filename):
-        # Create a temporary file with the generated script
+        # Validate the generated script
+        if not is_valid_python(script_content):
+            print("Generated script contains syntax errors.")
+            print(script_content)
+            return None
+
+        # Proceed with creating and executing the temporary script
         with tempfile.NamedTemporaryFile(suffix='.py', mode='w', delete=False) as tf:
             tf.write(script_content)
             temp_filename = tf.name
@@ -42,15 +56,24 @@ class ManimModel():
             subprocess.run(['manim', '-qm', temp_filename, '--output_file', output_filename], check=True)
             
             # Construct the expected video path
-            video_path = os.path.join(".", "media", "videos", "temp", "720p30", f"{output_filename}.mp4")
-            if os.path.exists(video_path):
-                return video_path
-            else:
+            newest_folder = max(
+                [f for f in os.listdir("./media/videos/") if os.path.isdir(os.path.join("./media/videos/", f))],
+                key=lambda x: os.path.getmtime(os.path.join("./media/videos/", x))
+            )
+            dir_path = os.path.join('.', 'media', 'videos', newest_folder, "720p30")
+            mp4_files = [f for f in os.listdir(dir_path) if f.endswith('.mp4')]
+            if mp4_files: return os.path.join(dir_path, mp4_files[0])
+            else: 
                 print("Video file was not found.")
-                return None
+                return None 
+
+        except subprocess.CalledProcessError as e:
+            print(f"Manim failed to execute the script: {e}")
+            return None
         finally:
             # Clean up the temporary file
             os.unlink(temp_filename)
+
 
     def generate_unique_filename(self, base_name="animation"):
         """Generate a unique filename using UUID and timestamp."""
