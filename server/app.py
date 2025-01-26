@@ -29,6 +29,10 @@ CORS(app)
 
 engine = create_engine(os.getenv('DATABASE_URL'))
 
+@app.route("/")
+def index():
+    return "Hello, world!"
+
 @app.route("/generate_question", methods=["POST"])
 def generate_question():
     if request.method == "POST":
