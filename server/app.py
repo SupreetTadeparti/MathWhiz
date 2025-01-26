@@ -1,7 +1,7 @@
 from flask import Flask, request, send_from_directory
 from manim_model import ManimModel
 import os
-import openai
+from questions_create import create_question
 from openai import OpenAI
 from dotenv import load_dotenv
 
@@ -23,17 +23,22 @@ manim_model = ManimModel()
 
 app = Flask(__name__)
 
-@app.route('/')
-def home():
-    return "Hello, Flask!"
 
-@app.route('/video/<path:filename>')
+@app.route("/generate_question", methods=["POST"])
+def generate_question():
+    if request.method == "POST":
+        prompt = request.json.get("prompt")
+        res = create_question(prompt)
+        return res
+
+@app.route("/video/<path:filename>")
 def serve_media(filename):
-    return send_from_directory('.', filename)
+    return send_from_directory(".", filename)
 
-@app.route('/generate_animation_openai')
+
+@app.route("/generate_animation_openai")
 def generate_animation_openai():
-    prompt = request.args.get('prompt')
+    prompt = request.args.get("prompt")
     if not prompt:
         return {"error": "No prompt provided."}, 400
 
@@ -41,13 +46,13 @@ def generate_animation_openai():
         model="gpt-4o",
         messages=[
             {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": prompt}
+            {"role": "user", "content": prompt},
         ],
         max_tokens=1024,
         temperature=0.3,
     )
 
-    try: 
+    try:
         script = completion.choices[0].message.content
         filename = manim_model.generate_unique_filename()
         video_path = manim_model.execute_animation(script, filename)
@@ -58,17 +63,20 @@ def generate_animation_openai():
     except Exception as e:
         return {"error": str(e)}, 500
 
-@app.route('/generate_animation_finetuned')
+
+@app.route("/generate_animation_finetuned")
 def generate_animation():
-    prompt = request.args.get('prompt')
+    prompt = request.args.get("prompt")
     if not prompt:
         return {"error": "No prompt provided."}, 400
-    
+
     try:
-        script = manim_model.generate_script(f"I would like to create an animation that {prompt}")
+        script = manim_model.generate_script(
+            f"I would like to create an animation that {prompt}"
+        )
         filename = manim_model.generate_unique_filename()
         video_path = manim_model.execute_animation(script, filename)
-        
+
         if video_path and os.path.exists(video_path):
             return {"video_path": video_path}
         else:
@@ -76,5 +84,6 @@ def generate_animation():
     except Exception as e:
         return {"error": str(e)}, 500
 
-if __name__ == '__main__':
-    app.run(debug=True, use_reloader=False, host='0.0.0.0')
+
+if __name__ == "__main__":
+    app.run(debug=True, use_reloader=False, host="0.0.0.0")
