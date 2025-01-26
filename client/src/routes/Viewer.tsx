@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import Navbar from "../components/Navbar";
@@ -13,6 +13,7 @@ const Viewer: React.FC<ViewerProps> = ({ setMonochrome, setProgress }) => {
     const location = useLocation();
     const navigate = useNavigate();
     const { isAuthenticated } = useAuth0();
+    let [questionData, setQuestionData] = useState([]);
     const videoUrl = location.state?.videoUrl;
     const prompt = location.state?.prompt || "Multiplication";
 
@@ -49,7 +50,7 @@ const Viewer: React.FC<ViewerProps> = ({ setMonochrome, setProgress }) => {
     return (
         <>
             <Navbar />
-            <div className="flex flex-col justify-center items-center gap-10 w-full h-full">
+            <div className="flex flex-col justify-center items-center gap-10 w-full min-h-[100vh]">
                 {videoUrl ? (
                     <video
                         className="w-3/4 max-w-4xl"
@@ -57,7 +58,7 @@ const Viewer: React.FC<ViewerProps> = ({ setMonochrome, setProgress }) => {
                         autoPlay
                         src={videoUrl}
                         onError={(e) => {
-                            console.error('Video loading error:', e);
+                            console.error("Video loading error:", e);
                             setProgress(false);
                         }}
                     />
@@ -66,6 +67,9 @@ const Viewer: React.FC<ViewerProps> = ({ setMonochrome, setProgress }) => {
                         Loading video... If nothing appears, please try again.
                     </div>
                 )}
+            </div>
+            <div className="w-full min-h-[100vh]">
+                <Questions questionData={questionData} />
             </div>
         </>
     );
