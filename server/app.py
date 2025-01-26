@@ -1,9 +1,9 @@
+from openai import OpenAI
 from flask import Flask, request, send_from_directory
 from flask_cors import CORS
 from manim_model import ManimModel
 import os
 from questions_create import create_question
-from openai import OpenAI
 from dotenv import load_dotenv
 
 load_dotenv()
