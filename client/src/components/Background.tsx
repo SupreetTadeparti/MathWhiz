@@ -111,11 +111,7 @@ const Background: React.FC<BackgroundProps> = ({ monochrome, progress }) => {
       <div
         className={`${
           !progress ? "hidden" : ""
-<<<<<<< HEAD
         } phrase text-center absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 text-white text-7xl z-1 ${fadeClass}`}
-=======
-        } phrase text-center fixed top-[50%] left-[50%]  text-white text-7xl z-1 ${fadeClass}`}
->>>>>>> 7fbdf0ca76c62e25c7c42728cc2aba812e789fe2
       >
         {phrases[phraseIndex]}
       </div>
