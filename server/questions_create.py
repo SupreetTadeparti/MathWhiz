@@ -7,7 +7,7 @@ def create_question(prompt: str) -> str:
     response = requests.post(
         WORKER_URL,
         json={
-            "prompt": f"Generate 5 properly formatted multiple choice questions on the following prompt: {prompt}"
+            "prompt": f"count till 200"
         },
     )
     if response.status_code == 200:
