@@ -66,7 +66,7 @@ const Questions: React.FC<QuestionsProps> = ({ questionData }) => {
   }
 
   return (
-    <div className="px-25 py-25 flex flex-col gap-15">
+    <div className="question-container px-25 py-25 flex flex-col gap-15">
       <div className="question">{questionData[currQuestion].question}</div>
       <div className="options grid grid-cols-2 place-items-center gap-y-15">
         <div onClick={() => selectOption("a")} className={getOptionClass("a")}>

@@ -33,12 +33,13 @@ engine = create_engine(os.getenv('DATABASE_URL'))
 def index():
     return "Hello, world!"
 
-@app.route("/generate_question", methods=["POST"])
-def generate_question():
+@app.route("/generate_questions", methods=["POST"])
+def generate_questions():
     if request.method == "POST":
         prompt = request.json.get("prompt")
-        res = create_question(prompt)
-        return res
+        questions = create_question(prompt)
+        print(questions)
+        return questions
 
 @app.route("/video/<path:filename>")
 def serve_media(filename):

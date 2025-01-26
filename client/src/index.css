@@ -143,6 +143,34 @@ body,
   color: white;
 }
 
+.question-container {
+  position: relative;
+}
+
+/* Incorrect */
+.question-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: hsl(0, 70%, 60%);
+  opacity: 0;
+}
+
+/* Correct */
+.question-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #56e052;
+  opacity: 0;
+}
+
 @media (max-width: 768px) {
   .phrase {
     font-size: 3rem;
