@@ -3,7 +3,6 @@ import Navbar from "../components/Navbar";
 import CoverButton from "../components/CoverButton";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import axios from "axios";
 
 interface HomeProps {
   setMonochrome: (value: boolean) => void;
@@ -31,11 +30,13 @@ const Generator: React.FC<HomeProps> = ({ setMonochrome, setProgress }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/generate_animation_openai?prompt=${encodeURIComponent(prompt)}`,
+        `http://localhost:5000/generate_animation_openai?prompt=${encodeURIComponent(
+          prompt
+        )}`,
         {
-          method: 'GET',
+          method: "GET",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
         }
       );
@@ -43,14 +44,14 @@ const Generator: React.FC<HomeProps> = ({ setMonochrome, setProgress }) => {
       const data = await response.json();
       if (data && data.video_path) {
         const videoUrl = `http://localhost:5000/video${data.video_path}`;
-        navigate('/viewer', {
-          state: { videoUrl }
+        navigate("/viewer", {
+          state: { videoUrl },
         });
       } else {
-        throw new Error('No video path received from API');
+        throw new Error("No video path received from API");
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
       setProgress(false);
       setHidden(false);
     }
@@ -60,8 +61,9 @@ const Generator: React.FC<HomeProps> = ({ setMonochrome, setProgress }) => {
     <>
       <Navbar />
       <div
-        className={`${hidden ? "hidden" : ""
-          } container flex flex-col justify-center items-center gap-10 w-full h-full`}
+        className={`${
+          hidden ? "hidden" : ""
+        } flex flex-col justify-center items-center gap-10 w-full h-full`}
       >
         <h1 className="text-white font-bold text-5xl text-center">
           What would you like to understand?

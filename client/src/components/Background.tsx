@@ -81,63 +81,63 @@ const Background: React.FC<BackgroundProps> = ({ monochrome, progress }) => {
       <div
         className={`${
           !progress ? "hidden" : ""
-        } phrase text-center absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 text-white text-7xl z-1 ${fadeClass}`}
+        } phrase text-center fixed top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 text-white text-7xl z-1 ${fadeClass}`}
       >
         {phrases[phraseIndex]}
       </div>
       <div
         className={`${
           progressNums.includes(1) ? "active" : ""
-        } absolute text-red-500 text-[30rem] transform -translate-x-1/2 -translate-y-1/2 top-1/10 left-1/10 rotate-10`}
+        }  text-red-500 text-[30rem] top-1/10 left-1/10 bg-symbol rotate-10`}
       >
         -
       </div>
       <div
         className={`${
           progressNums.includes(2) ? "active" : ""
-        } absolute text-yellow-500 text-[30rem] transform -translate-x-1/2 -translate-y-1/2 top-2/3 left-3/4 rotate-30`}
+        }  text-yellow-500 text-[30rem] top-2/3 left-3/5 bg-symbol rotate-30`}
       >
         (
       </div>
       <div
         className={`${
           progressNums.includes(3) ? "active" : ""
-        } absolute text-purple-500 text-[22rem] transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/30 rotate-15`}
+        }  text-purple-500 text-[22rem] top-1/2 -left-1/30 bg-symbol rotate-20`}
       >
         Δ
       </div>
       <div
         className={`${
           progressNums.includes(4) ? "active" : ""
-        } absolute text-pink-500 text-[30rem] transform -translate-x-1/2 -translate-y-1/2 top-1/4 left-2/3 -rotate-75`}
+        }  text-pink-500 text-[30rem] -top-1/8 left-6/7 bg-symbol -rotate-75`}
       >
         ∫
       </div>
       <div
         className={`${
           progressNums.includes(5) ? "active" : ""
-        } absolute text-red-500 text-[30rem] transform -translate-x-1/2 -translate-y-1/2 top-5/6 left-1/5 rotate-45`}
+        }  text-red-500 text-[30rem] top-4/6 -left-1/25 bg-symbol rotate-80`}
       >
         +
       </div>
       <div
         className={`${
           progressNums.includes(6) ? "active" : ""
-        } absolute text-yellow-500 text-[30rem] transform -translate-x-1/2 -translate-y-1/2 top-1/8 left-2/6 rotate-30`}
+        }  text-yellow-500 text-[30rem] top-1/8 left-1/6 bg-symbol rotate-40`}
       >
         ÷
       </div>
       <div
         className={`${
           progressNums.includes(7) ? "active" : ""
-        } absolute text-green-400 text-[30rem] transform -translate-x-1/2 -translate-y-1/2 top-1/5 left-11/12 rotate-30`}
+        }  text-green-400 text-[30rem] top-1/5 left-11/14 bg-symbol rotate-25`}
       >
         =
       </div>
       <div
         className={`${
           progressNums.includes(8) ? "active" : ""
-        } absolute text-gray-300 text-[15rem] transform -translate-x-1/2 -translate-y-1/2 top-4/5 left-11/12 -rotate-30`}
+        }  text-gray-300 text-[15rem] top-3/4 left-24/25  bg-symbol -rotate-20`}
       >
         dx
       </div>

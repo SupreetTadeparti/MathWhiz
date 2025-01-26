@@ -78,6 +78,11 @@ body,
   transition: color 0.75s linear;
 }
 
+.bg-symbol {
+  position: fixed;
+  transform: translate(-50%, -50%);
+}
+
 .background.monochrome > *:not(.active, .phrase) {
   color: #555;
 }
