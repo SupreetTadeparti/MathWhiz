@@ -4,3 +4,4 @@ package-lock.json
 /server/__pycache__
 .env
 /server/results
+/server/fine-tuned-DeepSeek-R1-Distill-Llama-8B-adapters
