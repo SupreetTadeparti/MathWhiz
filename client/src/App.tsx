@@ -4,6 +4,7 @@ import Generator from "./routes/Generator";
 import Vault from "./routes/Vault";
 import Background from "./components/Background";
 import Viewer from "./routes/Viewer";
+import Quiz from "./routes/Quiz";
 import { useState } from "react";
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
               <Viewer setMonochrome={setMonochrome} setProgress={setProgress} />
             }
           />
+          <Route path="/quiz" element={<Quiz />} />
         </Routes>
       </BrowserRouter>
     </>

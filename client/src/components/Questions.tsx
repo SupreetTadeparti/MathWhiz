@@ -51,13 +51,13 @@ const Questions: React.FC<QuestionsProps> = ({ questionData }) => {
 
   if (currQuestion >= questionData.length) {
     return (
-      <div className="h-full px-25 py-25 flex flex-col gap-15 items-center justify-center">
-        <div className="text-6xl text-white font-bold">
+      <div className="min-h-screen w-full flex flex-col gap-8 items-center justify-center bg-gray-800/50">
+        <div className="text-6xl text-white font-bold text-center">
           Your Score: {score} / {questionData.length}
         </div>
         <button
           onClick={handleHomeRedirect}
-          className="text-3xl mt-5 px-8 py-5 cursor-pointer text-white rounded border-[var(--primary)] border-4 hover:bg-[var(--primary)] transition-colors hover:border-transparent"
+          className="text-3xl px-8 py-5 cursor-pointer text-white rounded border-[var(--primary)] border-4 hover:bg-[var(--primary)] transition-colors hover:border-transparent"
         >
           Go to Home
         </button>
@@ -66,20 +66,21 @@ const Questions: React.FC<QuestionsProps> = ({ questionData }) => {
   }
 
   return (
-    <div className="question-container px-25 py-25 flex flex-col gap-15">
-      <div className="question">{questionData[currQuestion].question}</div>
-      <div className="options grid grid-cols-2 place-items-center gap-y-15">
-        <div onClick={() => selectOption("a")} className={getOptionClass("a")}>
-          {questionData[currQuestion].options.a}
+    <div className="min-h-screen w-full flex flex-col items-center justify-center bg-gray-800/50 py-10">
+      <div className="w-full max-w-7xl px-4">
+        <div className="text-white text-3xl md:text-4xl font-bold text-center mb-16">
+          {questionData[currQuestion].question}
         </div>
-        <div onClick={() => selectOption("b")} className={getOptionClass("b")}>
-          {questionData[currQuestion].options.b}
-        </div>
-        <div onClick={() => selectOption("c")} className={getOptionClass("c")}>
-          {questionData[currQuestion].options.c}
-        </div>
-        <div onClick={() => selectOption("d")} className={getOptionClass("d")}>
-          {questionData[currQuestion].options.d}
+        <div className="grid grid-cols-2 gap-6 w-full max-w-5xl mx-auto">
+          {Object.entries(questionData[currQuestion].options).map(([key, value]) => (
+            <div
+              key={key}
+              onClick={() => selectOption(key)}
+              className={`${getOptionClass(key)} p-8 rounded-lg text-white text-xl text-center cursor-pointer transition-all duration-300 hover:scale-105 w-full min-h-[120px] flex items-center justify-center`}
+            >
+              {value}
+            </div>
+          ))}
         </div>
       </div>
     </div>
