@@ -33,12 +33,12 @@ const Navbar: React.FC = () => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <ul className="flex flex-col p-2">
+        <ul className="flex flex-col p-2 text-center">
           <li className="py-4 px-6 text-white text-xl text-center rounded-sm cursor-pointer bg-transparent hover:bg-[var(--primary)] hover:text-[var(--secondary)] transition-colors duration-300">
-            Option 1
+            Generator
           </li>
           <li className="py-4 px-6 text-white text-xl text-center rounded-sm cursor-pointer bg-transparent hover:bg-[var(--primary)] hover:text-[var(--secondary)] transition-colors duration-300">
-            Option 2
+            The Vault
           </li>
           <li
             onClick={() => logout()}
