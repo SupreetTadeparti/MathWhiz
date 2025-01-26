@@ -1,4 +1,5 @@
 from flask import Flask, request, send_from_directory
+from flask_cors import CORS
 from manim_model import ManimModel
 import os
 import openai
@@ -22,6 +23,7 @@ client.api_key = os.getenv("OPENAI_API_KEY")
 manim_model = ManimModel()
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/')
 def home():
@@ -52,6 +54,9 @@ def generate_animation_openai():
         filename = manim_model.generate_unique_filename()
         video_path = manim_model.execute_animation(script, filename)
         if video_path and os.path.exists(video_path):
+            video_path = video_path.replace("\\", "/")
+            video_path = video_path.lstrip(".")
+            print(video_path)
             return {"video_path": video_path}
         else:
             return {"error": "Failed to generate animation"}, 500

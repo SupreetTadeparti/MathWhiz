@@ -3,6 +3,7 @@ import Landing from "./routes/Landing";
 import Generator from "./routes/Generator";
 import Vault from "./routes/Vault";
 import Background from "./components/Background";
+import Viewer from "./routes/Viewer";
 import { useState } from "react";
 
 function App() {
@@ -21,7 +22,13 @@ function App() {
               <Generator setMonochrome={setMonochrome} setProgress={setProgress} />
             }
           />
-          <Route path="/vault" element={<Vault/>}/>
+          <Route path="/vault" element={<Vault />} />
+          <Route
+            path="/viewer"
+            element={
+              <Viewer setMonochrome={setMonochrome} setProgress={setProgress} />
+            }
+          />
         </Routes>
       </BrowserRouter>
     </>

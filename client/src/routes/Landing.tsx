@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import CoverButton from "../components/CoverButton";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
@@ -8,11 +9,14 @@ interface LandingProps {
 
 const Landing: React.FC<LandingProps> = ({ setMonochrome }) => {
   const navigate = useNavigate();
-  const { loginWithPopup, isAuthenticated } = useAuth0();
+  const { isAuthenticated, loginWithPopup } = useAuth0();
 
-  if (isAuthenticated) navigate("/generator");
-
-  setMonochrome(false);
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/generator");
+    }
+    setMonochrome(false);
+  }, [isAuthenticated, navigate, setMonochrome]);
 
   return (
     <>
