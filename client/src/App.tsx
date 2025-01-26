@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Landing from "./routes/Landing";
-import Home from "./routes/Generator";
+import Generator from "./routes/Generator";
+import Vault from "./routes/Vault";
 import Background from "./components/Background";
 import { useState } from "react";
 
@@ -17,9 +18,10 @@ function App() {
           <Route
             path="/generator"
             element={
-              <Home setMonochrome={setMonochrome} setProgress={setProgress} />
+              <Generator setMonochrome={setMonochrome} setProgress={setProgress} />
             }
           />
+          <Route path="/vault" element={<Vault/>}/>
         </Routes>
       </BrowserRouter>
     </>

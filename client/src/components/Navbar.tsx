@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useAuth0 } from '@auth0/auth0-react';
+import { useNavigate } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   const { logout } = useAuth0();
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleMouseEnter = () => {
     setMenuOpen(true);
@@ -34,10 +36,12 @@ const Navbar: React.FC = () => {
         onMouseLeave={handleMouseLeave}
       >
         <ul className="flex flex-col p-2 text-center">
-          <li className="py-4 px-6 text-white text-xl text-center rounded-sm cursor-pointer bg-transparent hover:bg-[var(--primary)] hover:text-[var(--secondary)] transition-colors duration-300">
+          <li onClick={() => navigate("/generator")}
+            className="py-4 px-6 text-white text-xl text-center rounded-sm cursor-pointer bg-transparent hover:bg-[var(--primary)] hover:text-[var(--secondary)] transition-colors duration-300">
             Generator
           </li>
-          <li className="py-4 px-6 text-white text-xl text-center rounded-sm cursor-pointer bg-transparent hover:bg-[var(--primary)] hover:text-[var(--secondary)] transition-colors duration-300">
+          <li onClick={() => navigate("/vault")}
+            className="py-4 px-6 text-white text-xl text-center rounded-sm cursor-pointer bg-transparent hover:bg-[var(--primary)] hover:text-[var(--secondary)] transition-colors duration-300">
             The Vault
           </li>
           <li
