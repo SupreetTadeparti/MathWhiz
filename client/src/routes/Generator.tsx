@@ -38,6 +38,7 @@ const Generator: React.FC<HomeProps> = ({ setMonochrome, setProgress }) => {
         />
         <CoverButton
           onClick={() => {
+            
             setProgress(true);
             setHidden(true);
           }}
