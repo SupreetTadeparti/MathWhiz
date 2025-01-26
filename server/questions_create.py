@@ -1,18 +1,20 @@
 import requests
 
-# Worker URL
-worker_url = "https://openai-worker.rish-worker.workers.dev"
+WORKER_URL = "https://openai-worker.rish-worker.workers.dev"
 
-# Prompt to send to the Worker
-prompt = "Explain the Pythagorean theorem in simple terms."
 
-# Make the POST request to the Cloudflare Worker
-response = requests.post(worker_url, json={"prompt": prompt})
+def create_question(prompt: str) -> str:
+    response = requests.post(
+        WORKER_URL,
+        json={
+            "prompt": f"Generate 5 properly formatted multiple choice questions on the following prompt: {prompt}"
+        },
+    )
+    if response.status_code == 200:
+        return response.text
+    else:
+        return f"Error: {response.status_code}"
 
-# Check if the request was successful
-if response.status_code == 200:
-    print("Response from Worker:")
-    print(response.text)
-else:
-    print(f"Error: {response.status_code}")
-    print(response.text)
+
+res = create_question("Pythagorean theorem")
+print(res)
