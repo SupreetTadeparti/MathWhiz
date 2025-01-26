@@ -89,3 +89,9 @@ body,
 .animate-fade-out {
   animation: fadeOut 2s forwards ease-out;
 }
+
+@media (max-width: 768px) {
+  .phrase {
+    font-size: 3rem;
+  }
+}
