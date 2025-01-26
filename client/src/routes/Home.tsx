@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState } from "react";
 import Navbar from "../components/Navbar";
 import CoverButton from "../components/CoverButton";
 import { useNavigate } from "react-router-dom";
