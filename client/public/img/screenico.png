@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="240.55273"
+   height="177.17688"
+   viewBox="0 0 63.646244 46.87805"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4 (1:1.4+202410161351+e7c3feb100)"
+   sodipodi:docname="MathWhiz.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#343434"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.087064784"
+     inkscape:cx="-4525.3658"
+     inkscape:cy="2532.5969"
+     inkscape:window-width="1280"
+     inkscape:window-height="735"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:page
+       x="0"
+       y="1.6402868e-16"
+       width="63.646244"
+       height="46.878052"
+       id="page1"
+       margin="0"
+       bleed="0" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-4702.7905,-19.61235)">
+    <path
+       d="m 4705.2906,22.112345 v 30.765564 h 18.5647 l -6.4156,11.1125 h 34.3478 l -6.4162,-11.1125 h 18.5653 V 22.112345 Z"
+       style="opacity:1;fill:none;stroke:#ffffff;stroke-width:4.99999;stroke-linecap:round;stroke-linejoin:miter"
+       id="path15" />
+  </g>
+</svg>
