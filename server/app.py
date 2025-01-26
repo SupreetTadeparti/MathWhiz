@@ -63,7 +63,7 @@ def generate_animation_openai():
     )
 
     try:
-        script = completion.choices[0].message.content
+        script = completion.choices[0].message.content.replace("```python", "").replace("```", "")
         filename = manim_model.generate_unique_filename()
         video_path = manim_model.execute_animation(script, filename)
         if video_path and os.path.exists(video_path):
