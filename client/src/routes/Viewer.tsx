@@ -14,10 +14,25 @@ const Viewer: React.FC<ViewerProps> = ({ setMonochrome, setProgress }) => {
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth0();
   const videoUrl = location.state?.videoUrl;
+  const prompt = location.state?.prompt || "Multiplication";
 
   useEffect(() => {
+    fetch("http://localhost:5000/generate_questions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        prompt: prompt,
+      }),
+    })
+      .then(async (res) => {
+        console.log(res);
+        console.log(await res.json());
+      })
+      .catch((err) => console.error("Error saving video:", err));
     if (!isAuthenticated) {
-      //   navigate("/");
+      // navigate("/");
       return;
     }
 

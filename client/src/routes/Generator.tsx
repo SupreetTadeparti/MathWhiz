@@ -49,27 +49,26 @@ const Generator: React.FC<HomeProps> = ({ setMonochrome, setProgress }) => {
         const videoUrl = `http://api.mathwhiz.biz:5000/video${data.video_path}`;
 
         // Fire and forget the save request
-        fetch('http://api.mathwhiz.biz:5000/save_video', {
-          method: 'POST',
+        fetch("http://api.mathwhiz.biz:5000/save_video", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
             prompt: prompt,
             video: videoUrl,
             thumbnail: videoUrl,
-            user_id: user?.sub
-          })
-        }).catch(err => console.error('Error saving video:', err));
+            user_id: user?.sub,
+          }),
+        }).catch((err) => console.error("Error saving video:", err));
 
         // Navigate immediately without waiting for save
         navigate("/viewer", {
-          state: { videoUrl },
+          state: { videoUrl, prompt },
         });
       } else {
         throw new Error("No video path received from API");
       }
-
     } catch (error) {
       console.error("Error:", error);
     } finally {
@@ -83,8 +82,9 @@ const Generator: React.FC<HomeProps> = ({ setMonochrome, setProgress }) => {
     <>
       <Navbar disableMenu={isLoading} />
       <div
-        className={`${hidden ? "hidden" : ""
-          } flex flex-col justify-center items-center gap-10 w-full h-full`}
+        className={`${
+          hidden ? "hidden" : ""
+        } flex flex-col justify-center items-center gap-10 w-full h-full`}
       >
         <h1 className="text-white font-bold text-5xl text-center">
           What would you like to understand?
