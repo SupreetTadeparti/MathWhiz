@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import Navbar from "../components/Navbar";
@@ -13,6 +13,7 @@ const Viewer: React.FC<ViewerProps> = ({ setMonochrome, setProgress }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth0();
+  let [questionData, setQuestionData] = useState([]);
   const videoUrl = location.state?.videoUrl;
   const prompt = location.state?.prompt || "Multiplication";
 
@@ -27,12 +28,13 @@ const Viewer: React.FC<ViewerProps> = ({ setMonochrome, setProgress }) => {
       }),
     })
       .then(async (res) => {
-        console.log(res);
-        console.log(await res.json());
+        // TODO: Fix
+        setQuestionData(await res.json());
       })
       .catch((err) => console.error("Error saving video:", err));
     if (!isAuthenticated) {
-      // navigate("/");
+      // Uncomment for production
+      // navigate("/login");
       return;
     }
 
@@ -46,29 +48,32 @@ const Viewer: React.FC<ViewerProps> = ({ setMonochrome, setProgress }) => {
     setProgress(false);
   }, [isAuthenticated, videoUrl, navigate, setMonochrome, setProgress]);
 
-    return (
-        <>
-            <Navbar />
-            <div className="flex flex-col justify-center items-center gap-10 w-full h-full">
-                {videoUrl ? (
-                    <video
-                        className="w-3/4 max-w-4xl"
-                        controls
-                        autoPlay
-                        src={videoUrl}
-                        onError={(e) => {
-                            console.error('Video loading error:', e);
-                            setProgress(false);
-                        }}
-                    />
-                ) : (
-                    <div className="text-white text-2xl">
-                        Loading video... If nothing appears, please try again.
-                    </div>
-                )}
-            </div>
-        </>
-    );
+  return (
+    <>
+      <Navbar />
+      <div className="flex flex-col justify-center items-center gap-10 w-full min-h-[100vh]">
+        {videoUrl ? (
+          <video
+            className="w-3/4 max-w-4xl"
+            controls
+            autoPlay
+            src={videoUrl}
+            onError={(e) => {
+              console.error("Video loading error:", e);
+              setProgress(false);
+            }}
+          />
+        ) : (
+          <div className="text-white text-2xl">
+            Loading video... If nothing appears, please try again.
+          </div>
+        )}
+      </div>
+      <div className="w-full min-h-[100vh]">
+        <Questions questionData={questionData} />
+      </div>
+    </>
+  );
 };
 
 export default Viewer;

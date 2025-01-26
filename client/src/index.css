@@ -95,7 +95,6 @@ body,
   animation: fadeOut 2s forwards ease-out;
 }
 
-<<<<<<< HEAD
 .phrase {
   transform: translate(-50%, -50%);
 }
@@ -172,8 +171,6 @@ body,
   opacity: 0;
 }
 
-=======
->>>>>>> 0c3fa9e06bde70f1d9621cc4717ad151d5033f68
 @media (max-width: 768px) {
   .phrase {
     font-size: 3rem;
