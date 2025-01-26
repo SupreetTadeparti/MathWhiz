@@ -1,6 +1,6 @@
 # 🧠 MathWhiz
 
-[MathWhiz](mathwhiz.biz) is an application that generates Manim videos for math and physics from user prompts along with quizzes, catering to the needs of teachers and students. With its intuitive features, users can easily create engaging educational content and test their knowledge.
+[MathWhiz](https://mathwhiz.biz) is an application that generates Manim videos for math and physics from user prompts along with quizzes, catering to the needs of teachers and students. With its intuitive features, users can easily create engaging educational content and test their knowledge.
 
 ## Features
 
