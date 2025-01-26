@@ -7,3 +7,4 @@ package-lock.json
 /server/fine-tuned-DeepSeek-R1-Distill-Llama-8B-adapters
 .venv
 
+/media
