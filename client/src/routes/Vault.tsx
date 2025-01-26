@@ -29,7 +29,7 @@ const Vault: React.FC = () => {
     if (!user?.sub) return;
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:5000/get_user_videos/${user.sub}`);
+      const response = await fetch(`http://api.mathwhiz.biz:5000/get_user_videos/${user.sub}`);
       const data = await response.json();
       if (data.videos) {
         setVideos(data.videos);

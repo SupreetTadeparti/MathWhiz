@@ -2,13 +2,19 @@ import React, { useState } from "react";
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from "react-router-dom";
 
-const Navbar: React.FC = () => {
+interface NavbarProps {
+  disableMenu?: boolean;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ disableMenu }) => {
   const { logout } = useAuth0();
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleMouseEnter = () => {
-    setMenuOpen(true);
+    if (!disableMenu) {
+      setMenuOpen(true);
+    }
   };
 
   const handleMouseLeave = () => {
@@ -20,7 +26,7 @@ const Navbar: React.FC = () => {
       <img className="mr-auto h-8" src="/img/logo.svg" alt="Mathwhiz.biz" />
 
       <div
-        className="h-8 flex flex-col justify-between cursor-pointer"
+        className={`h-8 flex flex-col justify-between ${disableMenu ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
@@ -29,7 +35,7 @@ const Navbar: React.FC = () => {
         <div className="menu-line"></div>
       </div>
       <div
-        className={`absolute top-5 right-5 bg-[var(--secondary)] shadow-lg rounded-lg border-2 border-yellow-500 transition-opacity duration-50 ${menuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        className={`absolute top-5 right-5 bg-[var(--secondary)] shadow-lg rounded-lg border-2 border-yellow-500 transition-opacity duration-50 ${menuOpen && !disableMenu ? 'opacity-100' : 'opacity-0 pointer-events-none'
           }`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}

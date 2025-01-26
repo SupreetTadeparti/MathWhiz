@@ -12,6 +12,7 @@ interface HomeProps {
 const Generator: React.FC<HomeProps> = ({ setMonochrome, setProgress }) => {
   let [hidden, setHidden] = useState(false);
   let [prompt, setPrompt] = useState("");
+  let [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -27,6 +28,7 @@ const Generator: React.FC<HomeProps> = ({ setMonochrome, setProgress }) => {
   const handleSubmit = async () => {
     setProgress(true);
     setHidden(true);
+    setIsLoading(true);
 
     try {
       const response = await fetch(
@@ -70,14 +72,16 @@ const Generator: React.FC<HomeProps> = ({ setMonochrome, setProgress }) => {
 
     } catch (error) {
       console.error("Error:", error);
+    } finally {
       setProgress(false);
       setHidden(false);
+      setIsLoading(false);
     }
   };
 
   return (
     <>
-      <Navbar />
+      <Navbar disableMenu={isLoading} />
       <div
         className={`${hidden ? "hidden" : ""
           } flex flex-col justify-center items-center gap-10 w-full h-full`}
