@@ -33,7 +33,7 @@ const Viewer: React.FC<ViewerProps> = ({ setMonochrome, setProgress }) => {
     return (
         <>
             <Navbar />
-            <div className="container flex flex-col justify-center items-center gap-10 w-full h-full">
+            <div className="flex flex-col justify-center items-center gap-10 w-full h-full">
                 {videoUrl ? (
                     <video
                         className="w-3/4 max-w-4xl"

@@ -16,7 +16,7 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <div className="fixed w-full h-20 flex justify-center items-center gap-10 px-10">
+    <div className="fixed w-full h-20 flex justify-between items-center gap-10 px-10">
       <img className="mr-auto h-8" src="/img/logo.svg" alt="Mathwhiz.biz" />
 
       <div
@@ -29,9 +29,8 @@ const Navbar: React.FC = () => {
         <div className="menu-line"></div>
       </div>
       <div
-        className={`absolute top-5 right-5 bg-[var(--secondary)] shadow-lg rounded-lg border-2 border-yellow-500 transition-opacity duration-50 ${
-          menuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
+        className={`absolute top-5 right-5 bg-[var(--secondary)] shadow-lg rounded-lg border-2 border-yellow-500 transition-opacity duration-50 ${menuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          }`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >

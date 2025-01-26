@@ -2,19 +2,18 @@ import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
-import supabase from "../../supabase.js";
 
 interface Video {
-  id: string;
+  id: number;
+  prompt: string;
   thumbnail: string;
-  title: string;
-  description: string;
+  video: string;
+  created_at: string;
 }
 
 const Vault: React.FC = () => {
   const navigate = useNavigate();
-  const { isAuthenticated } = useAuth0();
-
+  const { isAuthenticated, user } = useAuth0();
   const [videos, setVideos] = useState<Video[]>([]);
 
   useEffect(() => {
@@ -23,40 +22,42 @@ const Vault: React.FC = () => {
     } else {
       fetchVideos();
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, user]);
 
   const fetchVideos = async () => {
-    // Get videos from the supabase storage
-    const { data, error } = await supabase.storage
-      .from("MathVideos")
-      .download("integralmanim.mp4");
+    if (!user?.sub) return;
 
-    console.log(data);
-
-    if (error) {
+    try {
+      const response = await fetch(`http://localhost:5000/get_user_videos/${user.sub}`);
+      const data = await response.json();
+      if (data.videos) {
+        setVideos(data.videos);
+      }
+    } catch (error) {
       console.error("Error fetching videos:", error);
-    } else {
-      // setVideos(data);
     }
   };
 
   return (
     <>
       <Navbar />
-      <div className="container flex flex-col justify-center items-center gap-10 w-full h-full">
+      <div className="flex flex-col justify-center items-center gap-10 w-full h-full">
         <h1 className="text-white font-bold text-5xl text-center">The Vault</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {videos.map((video) => (
             <div key={video.id} className="bg-gray-800 p-4 rounded-lg">
-              <img
-                src={video.thumbnail}
-                alt={video.title}
-                className="w-full h-48 object-cover rounded-md"
-              />
               <h2 className="text-white font-bold text-xl mt-2">
-                {video.title}
+                {video.prompt}
               </h2>
-              <p className="text-gray-400">{video.description}</p>
+              <p className="text-gray-400">Created: {new Date(video.created_at).toLocaleDateString()}</p>
+              <a
+                href={video.video}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-400 hover:text-blue-300 mt-2 block"
+              >
+                View Video
+              </a>
             </div>
           ))}
         </div>
