@@ -1,10 +1,8 @@
 # 🧠 MathWhiz
 
-**Domain:** mathwhiz.biz
-
 ## Description
 
-MathWhiz is an application that generates Manim videos from user prompts, catering to the needs of teachers and students. With its intuitive features, users can easily create engaging educational content.
+[MathWhiz](mathwhiz.biz) is an application that generates Manim videos from user prompts, catering to the needs of teachers and students. With its intuitive features, users can easily create engaging educational content.
 
 ## Features
 
