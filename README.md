@@ -5,12 +5,13 @@
 ## Features
 
 - 🔒 Login page and user authentication
+- 🔁 Toggle for fine-tuned custom model
 - 💾 Saved videos for easy access
 - 🎙️ Voiceover capabilities
 
 ## Created by
 
-- 👨‍💻 Lucas Reilly
-- 👩‍💻 Supreet Tadeparti
-- 👨‍💻 Julian Ubico
-- 👨‍💻 Rishab Fulke
+- 🧖‍♂️ Lucas Reilly
+- 🏓 Supreet Tadeparti
+- 🦠 Julian Ubico
+- 😎 Rishab Fulke
