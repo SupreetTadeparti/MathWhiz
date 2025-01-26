@@ -30,7 +30,7 @@ const Generator: React.FC<HomeProps> = ({ setMonochrome, setProgress }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/generate_animation_openai?prompt=${encodeURIComponent(
+        `http://api.mathwhiz.biz:5000/generate_animation_openai?prompt=${encodeURIComponent(
           prompt
         )}`,
         {
@@ -44,10 +44,10 @@ const Generator: React.FC<HomeProps> = ({ setMonochrome, setProgress }) => {
       const data = await response.json();
 
       if (data && data.video_path) {
-        const videoUrl = `http://localhost:5000/video${data.video_path}`;
+        const videoUrl = `http://api.mathwhiz.biz:5000/video${data.video_path}`;
 
         // Fire and forget the save request
-        fetch('http://localhost:5000/save_video', {
+        fetch('http://api.mathwhiz.biz:5000/save_video', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
