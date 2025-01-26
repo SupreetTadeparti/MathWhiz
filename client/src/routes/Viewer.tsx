@@ -5,46 +5,46 @@ import Navbar from "../components/Navbar";
 import Questions from "../components/Questions";
 
 interface ViewerProps {
-  setMonochrome: (value: boolean) => void;
-  setProgress: (value: boolean) => void;
+    setMonochrome: (value: boolean) => void;
+    setProgress: (value: boolean) => void;
 }
 
 const Viewer: React.FC<ViewerProps> = ({ setMonochrome, setProgress }) => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const { isAuthenticated } = useAuth0();
-  const videoUrl = location.state?.videoUrl;
-  const prompt = location.state?.prompt || "Multiplication";
+    const location = useLocation();
+    const navigate = useNavigate();
+    const { isAuthenticated } = useAuth0();
+    const videoUrl = location.state?.videoUrl;
+    const prompt = location.state?.prompt || "Multiplication";
 
-  useEffect(() => {
-    fetch("http://localhost:5000/generate_questions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        prompt: prompt,
-      }),
-    })
-      .then(async (res) => {
-        console.log(res);
-        console.log(await res.json());
-      })
-      .catch((err) => console.error("Error saving video:", err));
-    if (!isAuthenticated) {
-      // navigate("/");
-      return;
-    }
+    useEffect(() => {
+        fetch("http://localhost:5000/generate_questions", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                prompt: prompt,
+            }),
+        })
+            .then(async (res) => {
+                console.log(res);
+                console.log(await res.json());
+            })
+            .catch((err) => console.error("Error saving video:", err));
+        if (!isAuthenticated) {
+            // navigate("/");
+            return;
+        }
 
-    if (!videoUrl) {
-      console.error("No video URL provided");
-      navigate("/generator");
-      return;
-    }
+        if (!videoUrl) {
+            console.error("No video URL provided");
+            navigate("/generator");
+            return;
+        }
 
-    setMonochrome(true);
-    setProgress(false);
-  }, [isAuthenticated, videoUrl, navigate, setMonochrome, setProgress]);
+        setMonochrome(true);
+        setProgress(false);
+    }, [isAuthenticated, videoUrl, navigate, setMonochrome, setProgress]);
 
     return (
         <>
