@@ -9,7 +9,7 @@ interface HomeProps {
   setProgress: (value: boolean) => void;
 }
 
-const Home: React.FC<HomeProps> = ({ setMonochrome, setProgress }) => {
+const Generator: React.FC<HomeProps> = ({ setMonochrome, setProgress }) => {
   let [hidden, setHidden] = useState(false);
 
   const navigate = useNavigate();
@@ -48,4 +48,4 @@ const Home: React.FC<HomeProps> = ({ setMonochrome, setProgress }) => {
   );
 };
 
-export default Home;
+export default Generator;
