@@ -1,22 +1,33 @@
 import React from "react";
 import Navbar from "../components/Navbar";
-import Background from "../components/Background";
 import CoverButton from "../components/CoverButton";
+import { useNavigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
-const Home: React.FC = () => {
+interface HomeProps {
+  setMonochrome: (value: boolean) => void;
+}
+
+const Home: React.FC<HomeProps> = ({ setMonochrome }) => {
+  const navigate = useNavigate();
+
+  const { isAuthenticated } = useAuth0();
+
+  if (!isAuthenticated) navigate("/");
+
+  setMonochrome(true);
+
   return (
     <>
       <Navbar />
-      <Background />
       <div className="container flex flex-col justify-center items-center gap-10 w-full h-full ">
-        <video width="640" height="320" controls autoPlay>
-          <source src="animation.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        <h1 className="text-white font-bold text-5xl text-center">
+          What would you like to understand?
+        </h1>
         <input
-          className="w-80  text-white text-center text-lg py-1 px-2 border-b-2 border-white focus:outline-none"
+          className="w-100  text-white text-center text-lg py-1 px-2 border-b-2 border-white focus:outline-none"
           type="text"
-          placeholder="What would you like to understand?"
+          placeholder="Enter prompt here..."
         />
         <CoverButton content="Generate Visual Explanation" />
       </div>

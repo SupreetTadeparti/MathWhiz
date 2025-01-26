@@ -28,6 +28,7 @@ body,
 
 .generate-btn {
   position: relative;
+  transition: color 300ms;
 }
 
 .generate-btn:hover {
@@ -45,9 +46,17 @@ body,
   z-index: -1;
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.2s;
+  transition: transform 300ms;
 }
 
 .generate-btn:hover::after {
   transform: scaleX(1);
+}
+
+.background > * {
+  transition: color 0.75s linear;
+}
+
+.background.monochrome > * {
+  color: #555;
 }
