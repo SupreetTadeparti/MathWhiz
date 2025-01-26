@@ -84,7 +84,7 @@ body,
 }
 
 .background.monochrome > *:not(.active, .phrase) {
-  color: #2f2f2f;
+  color: #2a344e;
 }
 
 .animate-fade-in {

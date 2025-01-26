@@ -106,7 +106,7 @@ const Background: React.FC<BackgroundProps> = ({ monochrome, progress }) => {
     <div
       className={`${
         monochrome && "monochrome"
-      } background fixed w-full h-full overflow-hidden -z-1 bg-[#272727]`}
+      } background fixed w-full h-full overflow-hidden -z-1 bg-gray-800`}
     >
       <div
         className={`${
