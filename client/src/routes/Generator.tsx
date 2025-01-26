@@ -32,7 +32,7 @@ const Generator: React.FC<HomeProps> = ({ setMonochrome, setProgress }) => {
           What would you like to understand?
         </h1>
         <input
-          className="w-100  text-white text-center text-lg py-1 px-2 border-b-2 border-white focus:outline-none"
+          className="w-100 mb-10 text-white text-center text-lg py-1 px-2 border-b-2 border-white focus:outline-none"
           type="text"
           placeholder="Enter prompt here..."
         />
