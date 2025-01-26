@@ -104,70 +104,62 @@ const Background: React.FC<BackgroundProps> = ({ monochrome, progress }) => {
 
   return (
     <div
-      className={`${
-        monochrome && "monochrome"
-      } background fixed w-full h-full overflow-hidden -z-1 bg-gray-800`}
+      className={`${monochrome && "monochrome"
+        } background fixed w-full h-full overflow-hidden -z-10 bg-gray-800`}
     >
       <div
-        className={`${
-          !progress ? "hidden" : ""
-        } phrase text-center fixed top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 text-white text-7xl z-1 ${fadeClass}`}
+        className={`${!progress ? "hidden" : ""
+          } phrase absolute inset-0 flex items-center justify-center text-white text-3xl md:text-5xl lg:text-7xl z-50 ${fadeClass}`}
       >
-        {phrases[phraseIndex]}
+        <div className="max-w-4xl px-4 text-center">
+          {phrases[phraseIndex]}
+        </div>
       </div>
       <div
-        className={`${
-          progressNums.includes(1) ? "active" : ""
-        }  text-red-500 text-[30rem] top-1/10 left-1/10 bg-symbol rotate-10`}
+        className={`${progressNums.includes(1) ? "active" : ""
+          }  text-red-500 text-[30rem] top-1/10 left-1/10 bg-symbol rotate-10`}
       >
         -
       </div>
       <div
-        className={`${
-          progressNums.includes(2) ? "active" : ""
-        }  text-yellow-500 text-[30rem] top-2/3 left-3/5 bg-symbol rotate-30`}
+        className={`${progressNums.includes(2) ? "active" : ""
+          }  text-yellow-500 text-[30rem] top-2/3 left-3/5 bg-symbol rotate-30`}
       >
         (
       </div>
       <div
-        className={`${
-          progressNums.includes(3) ? "active" : ""
-        }  text-purple-500 text-[22rem] top-1/2 -left-1/30 bg-symbol rotate-20`}
+        className={`${progressNums.includes(3) ? "active" : ""
+          }  text-purple-500 text-[22rem] top-1/2 -left-1/30 bg-symbol rotate-20`}
       >
         Δ
       </div>
       <div
-        className={`${
-          progressNums.includes(4) ? "active" : ""
-        }  text-pink-500 text-[30rem] -top-1/8 left-6/7 bg-symbol -rotate-75`}
+        className={`${progressNums.includes(4) ? "active" : ""
+          }  text-pink-500 text-[30rem] -top-1/8 left-6/7 bg-symbol -rotate-75`}
       >
         ∫
       </div>
       <div
-        className={`${
-          progressNums.includes(5) ? "active" : ""
-        }  text-red-500 text-[30rem] top-4/6 -left-1/25 bg-symbol rotate-80`}
+        className={`${progressNums.includes(5) ? "active" : ""
+          }  text-red-500 text-[30rem] top-4/6 -left-1/25 bg-symbol rotate-80`}
       >
         +
       </div>
       <div
-        className={`${
-          progressNums.includes(6) ? "active" : ""
-        }  text-yellow-500 text-[30rem] top-1/8 left-1/6 bg-symbol rotate-40`}
+        className={`${progressNums.includes(6) ? "active" : ""
+          }  text-yellow-500 text-[30rem] top-1/8 left-1/6 bg-symbol rotate-40`}
       >
         ÷
       </div>
       <div
-        className={`${
-          progressNums.includes(7) ? "active" : ""
-        }  text-green-400 text-[30rem] top-1/5 left-11/14 bg-symbol rotate-25`}
+        className={`${progressNums.includes(7) ? "active" : ""
+          }  text-green-400 text-[30rem] top-1/5 left-11/14 bg-symbol rotate-25`}
       >
         =
       </div>
       <div
-        className={`${
-          progressNums.includes(8) ? "active" : ""
-        }  text-gray-300 text-[15rem] top-3/4 left-24/25  bg-symbol -rotate-20`}
+        className={`${progressNums.includes(8) ? "active" : ""
+          }  text-gray-300 text-[15rem] top-3/4 left-24/25  bg-symbol -rotate-20`}
       >
         dx
       </div>
