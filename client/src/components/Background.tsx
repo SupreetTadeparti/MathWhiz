@@ -5,9 +5,41 @@ interface BackgroundProps {
   progress?: boolean;
 }
 
+const phrases = [
+  "Crunching numbers faster than a hungry squirrel.",
+
+  "Rendering your reality, one pixel at a time.",
+
+  "Quantum computing, one uncertainty at a time.",
+
+  "Calibrating the space-time continuum...almost there.",
+
+  "Summoning the laws of physics, please stand by.",
+
+  "Triangulating the meaning of life, 3.14% complete.",
+
+  "Searching the universe for more RAM, be patient.",
+
+  "Consulting the oracle of mathematics, the answer is...42.",
+
+  "Compiling your dreams into executable code.",
+
+  "Channeling the ghost in the machine, please hold.",
+
+  "Negotiating with the laws of nature, compromise pending.",
+
+  "Harnessing the power of imagination, standby for liftoff.",
+
+  "Recalculating the universe, GPS signal lost.",
+
+  "Optimizing the fabric of reality, one thread at a time.",
+];
+
 const Background: React.FC<BackgroundProps> = ({ monochrome, progress }) => {
   let [progressNums, setProgressNums]: [number[], any] = useState([]);
   let [currProgressNum, setCurrProgressNum] = useState(0);
+  let [phraseIndex, setPhraseIndex] = useState(0);
+  let [fadeClass, setFadeClass] = useState("animate-fade-in");
 
   useEffect(() => {
     if (progress) {
@@ -20,9 +52,25 @@ const Background: React.FC<BackgroundProps> = ({ monochrome, progress }) => {
         });
       }, 300);
 
-      return () => clearInterval(birthInterval);
+      return () => {
+        clearInterval(birthInterval);
+      };
     }
   }, [progress, currProgressNum]);
+
+  useEffect(() => {
+    if (progress) {
+      let phraseInterval = setInterval(() => {
+        setFadeClass("animate-fade-out");
+        setTimeout(() => {
+          setPhraseIndex((prevIndex) => (prevIndex + 1) % phrases.length);
+          setFadeClass("animate-fade-in");
+        }, 2000);
+      }, 4100);
+
+      return () => clearInterval(phraseInterval);
+    }
+  }, [progress]);
 
   return (
     <div
@@ -30,6 +78,13 @@ const Background: React.FC<BackgroundProps> = ({ monochrome, progress }) => {
         monochrome && "monochrome"
       } background fixed w-full h-full overflow-hidden -z-1 bg-gray-800`}
     >
+      <div
+        className={`${
+          !progress ? "hidden" : ""
+        } phrase text-center absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 text-white text-7xl ${fadeClass}`}
+      >
+        {phrases[phraseIndex]}
+      </div>
       <div
         className={`${
           progressNums.includes(1) ? "active" : ""
