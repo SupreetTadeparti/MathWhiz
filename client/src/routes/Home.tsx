@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import React from "react";
 import Navbar from "../components/Navbar";
 import CoverButton from "../components/CoverButton";
 import { useNavigate } from "react-router-dom";
@@ -13,9 +13,9 @@ const Home: React.FC<HomeProps> = ({ setMonochrome }) => {
 
   const { isAuthenticated } = useAuth0();
 
-  setMonochrome(true);
-
   if (!isAuthenticated) navigate("/");
+
+  setMonochrome(true);
 
   return (
     <>
