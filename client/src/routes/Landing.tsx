@@ -17,7 +17,7 @@ const Landing: React.FC<LandingProps> = ({ setMonochrome }) => {
   return (
     <>
       <div className="w-full h-full flex flex-col items-center justify-center gap-15">
-        <img src="/img/logo.svg" alt="Mathwhiz.biz" />
+        <img className="max-w-[80%]" src="/img/logo.svg" alt="Mathwhiz.biz" />
         <CoverButton content="Join the Fun!" onClick={loginWithPopup} />
       </div>
     </>
