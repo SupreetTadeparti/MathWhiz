@@ -14,4 +14,4 @@
 - 🧖‍♂️ Lucas Reilly
 - 🏓 Supreet Tadeparti
 - 😎 Rishab Fulke
-- - 🦠 Julian Ubico
+- 🦠 Julian Ubico
