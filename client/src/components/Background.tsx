@@ -33,6 +33,36 @@ const phrases = [
   "Recalculating the universe, GPS signal lost.",
 
   "Optimizing the fabric of reality, one thread at a time.",
+
+  "Dividing by zero, please wait patiently for the universe to implode.",
+
+  "Rendering reality, one polygon at a time.",
+
+  "Calibrating the quantum flux capacitor, flux levels nominal.",
+
+  "Harmonizing the cosmic vibrations, please don't hum along.",
+
+  "Consulting the council of theoretical physicists, recommendations pending.",
+
+  "Simulating the butterfly effect, flapping wings detected.",
+
+  "Compressing spacetime, don't blink or you'll miss it.",
+
+  "Rendering the meaning of life, answer.exe not found.",
+
+  "Factoring the secrets of the universe, please show your work.",
+
+  "Integrating the mysteries of the cosmos, constant of proportionality loading.",
+
+  "Triangulating the coordinates of your dreams, GPS signal lost.",
+
+  "Balancing the forces of nature, friction coefficient still unknown.",
+
+  "Channeling the spirit of Euler, mathematical proof in progress.",
+
+  "Solving for X, Y, and Z...and the rest of the alphabet.",
+
+  "Decrypting the code of the universe, Konami code activated.",
 ];
 
 const Background: React.FC<BackgroundProps> = ({ monochrome, progress }) => {
