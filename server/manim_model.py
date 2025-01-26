@@ -17,7 +17,7 @@ def is_valid_python(code: str) -> bool:
         print(f"SyntaxError in generated script: {e}")
         return False
 class ManimModel():
-    def __init__(self):
+    def init_model(self):
         self.tokenizer = AutoTokenizer.from_pretrained("./fine-tuned-DeepSeek-R1-Distill-Llama-8B-adapters")
         self.model = AutoModelForCausalLM.from_pretrained(
             "deepseek-ai/DeepSeek-R1-Distill-Llama-8B",
@@ -29,6 +29,7 @@ class ManimModel():
         self.model.eval()
 
     def generate_script(self, prompt) -> str:
+        if not self.model: self.init_model()
         inputs = self.tokenizer(prompt, return_tensors="pt").to(self.model.device)
         outputs = self.model.generate(
             inputs["input_ids"],
