@@ -26,7 +26,7 @@ const Viewer: React.FC<ViewerProps> = ({ setMonochrome, setProgress }) => {
             return;
         }
 
-        setMonochrome(false);
+        setMonochrome(true);
         setProgress(false);
     }, [isAuthenticated, videoUrl, navigate, setMonochrome, setProgress]);
 
