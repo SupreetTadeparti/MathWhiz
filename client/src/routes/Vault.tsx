@@ -2,7 +2,7 @@ import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
-import supabase from "../../supabase";
+import supabase from "../../supabase.js";
 
 interface Video {
   id: string;

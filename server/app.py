@@ -5,6 +5,7 @@ import os
 from questions_create import create_question
 from openai import OpenAI
 from dotenv import load_dotenv
+from sqlalchemy import create_engine, text
 
 load_dotenv()
 
@@ -26,6 +27,7 @@ manim_model = ManimModel()
 app = Flask(__name__)
 CORS(app)
 
+engine = create_engine(os.getenv('DATABASE_URL'))
 
 @app.route("/generate_question", methods=["POST"])
 def generate_question():
@@ -90,6 +92,61 @@ def generate_animation():
     except Exception as e:
         return {"error": str(e)}, 500
 
+@app.route("/save_video", methods=["POST"])
+def save_video():
+    if request.method == "POST":
+        data = request.json
+        prompt = data.get("prompt")
+        thumbnail = data.get("thumbnail")
+        video = data.get("video")
+        user_id = data.get("user_id")
+
+        if not all([prompt, thumbnail, video, user_id]):
+            return {"error": "Missing required fields"}, 400
+
+        try:
+            with engine.connect() as connection:
+                query = text("""
+                    INSERT INTO videos (prompt, thumbnail, video, user_id)
+                    VALUES (:prompt, :thumbnail, :video, :user_id)
+                    RETURNING id
+                """)
+                result = connection.execute(query, {
+                    "prompt": prompt,
+                    "thumbnail": thumbnail,
+                    "video": video,
+                    "user_id": user_id
+                })
+                connection.commit()
+                video_id = result.scalar()
+                return {"success": True, "video_id": video_id}
+        except Exception as e:
+            return {"error": str(e)}, 500
+
+@app.route("/get_user_videos/<user_id>")
+def get_user_videos(user_id):
+    try:
+        with engine.connect() as connection:
+            query = text("""
+                SELECT id, prompt, thumbnail, video, created_at
+                FROM videos
+                WHERE user_id = :user_id
+                ORDER BY created_at DESC
+            """)
+            result = connection.execute(query, {"user_id": user_id})
+            videos = [
+                {
+                    "id": row.id,
+                    "prompt": row.prompt,
+                    "thumbnail": row.thumbnail,
+                    "video": row.video,
+                    "created_at": row.created_at.isoformat()
+                }
+                for row in result
+            ]
+            return {"videos": videos}
+    except Exception as e:
+        return {"error": str(e)}, 500
 
 if __name__ == "__main__":
     app.run(debug=True, use_reloader=False, host="0.0.0.0")
