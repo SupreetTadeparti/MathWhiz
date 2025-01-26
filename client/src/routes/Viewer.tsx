@@ -1,34 +1,35 @@
-import React, { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import Navbar from "../components/Navbar";
+import Questions from "../components/Questions";
 
 interface ViewerProps {
-    setMonochrome: (value: boolean) => void;
-    setProgress: (value: boolean) => void;
+  setMonochrome: (value: boolean) => void;
+  setProgress: (value: boolean) => void;
 }
 
 const Viewer: React.FC<ViewerProps> = ({ setMonochrome, setProgress }) => {
-    const location = useLocation();
-    const navigate = useNavigate();
-    const { isAuthenticated } = useAuth0();
-    const videoUrl = location.state?.videoUrl;
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { isAuthenticated } = useAuth0();
+  const videoUrl = location.state?.videoUrl;
 
-    useEffect(() => {
-        if (!isAuthenticated) {
-            navigate("/");
-            return;
-        }
+  useEffect(() => {
+    if (!isAuthenticated) {
+      //   navigate("/");
+      return;
+    }
 
-        if (!videoUrl) {
-            console.error('No video URL provided');
-            navigate('/generator');
-            return;
-        }
+    if (!videoUrl) {
+      console.error("No video URL provided");
+      navigate("/generator");
+      return;
+    }
 
-        setMonochrome(true);
-        setProgress(false);
-    }, [isAuthenticated, videoUrl, navigate, setMonochrome, setProgress]);
+    setMonochrome(true);
+    setProgress(false);
+  }, [isAuthenticated, videoUrl, navigate, setMonochrome, setProgress]);
 
     return (
         <>
