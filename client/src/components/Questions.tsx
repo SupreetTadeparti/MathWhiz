@@ -68,17 +68,17 @@ const Questions: React.FC<QuestionsProps> = ({ questionData }) => {
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center bg-gray-800/50 py-10">
       <div className="w-full max-w-7xl px-4">
-        <div className="text-white text-3xl md:text-4xl font-bold text-center mb-16">
+        <div className="text-white text-3xl md:text-4xl font-bold mb-16">
           {questionData[currQuestion].question}
         </div>
-        <div className="grid grid-cols-2 gap-6 w-full max-w-5xl mx-auto">
+        <div className="grid grid-cols-2 gap-6 w-full mx-auto">
           {Object.entries(questionData[currQuestion].options).map(([key, value]) => (
             <div
               key={key}
               onClick={() => selectOption(key)}
-              className={`${getOptionClass(key)} p-8 rounded-lg text-white text-xl text-center cursor-pointer transition-all duration-300 hover:scale-105 w-full min-h-[120px] flex items-center justify-center`}
+              className={`${getOptionClass(key)} p-8 rounded-lg text-white text-center cursor-pointer transition-all duration-300 hover:scale-105 w-full flex items-center justify-center`}
             >
-              {value}
+              <p className="text-2xl">{value}</p>
             </div>
           ))}
         </div>
