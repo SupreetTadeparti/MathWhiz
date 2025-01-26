@@ -15,7 +15,7 @@ const Vault: React.FC = () => {
   const navigate = useNavigate();
   const { isAuthenticated, user } = useAuth0();
   const [videos, setVideos] = useState<Video[]>([]);
-  const [loading, setLoading] = useState(true);
+  //const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -27,7 +27,7 @@ const Vault: React.FC = () => {
 
   const fetchVideos = async () => {
     if (!user?.sub) return;
-    setLoading(true);
+    //setLoading(true);
     try {
       const response = await fetch(`http://api.mathwhiz.biz:5000/get_user_videos/${user.sub}`);
       const data = await response.json();
@@ -37,7 +37,7 @@ const Vault: React.FC = () => {
     } catch (error) {
       console.error("Error fetching videos:", error);
     } finally {
-      setLoading(false);
+      //setLoading(false);
     }
   };
 
