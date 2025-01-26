@@ -28,7 +28,9 @@ const Vault: React.FC = () => {
     if (!user?.sub) return;
 
     try {
-      const response = await fetch(`http://localhost:5000/get_user_videos/${user.sub}`);
+      const response = await fetch(
+        `http://107.143.94.67:5000/get_user_videos/${user.sub}`
+      );
       const data = await response.json();
       if (data.videos) {
         setVideos(data.videos);
@@ -49,7 +51,9 @@ const Vault: React.FC = () => {
               <h2 className="text-white font-bold text-xl mt-2">
                 {video.prompt}
               </h2>
-              <p className="text-gray-400">Created: {new Date(video.created_at).toLocaleDateString()}</p>
+              <p className="text-gray-400">
+                Created: {new Date(video.created_at).toLocaleDateString()}
+              </p>
               <a
                 href={video.video}
                 target="_blank"

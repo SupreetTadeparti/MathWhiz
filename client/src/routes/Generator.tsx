@@ -21,7 +21,7 @@ const Generator: React.FC<HomeProps> = ({ setMonochrome, setProgress }) => {
     if (!isAuthenticated) {
       navigate("/");
     }
-    setMonochrome(true);
+    // setMonochrome(true);
   }, [isAuthenticated, navigate, setMonochrome]);
 
   const handleSubmit = async () => {
@@ -30,7 +30,7 @@ const Generator: React.FC<HomeProps> = ({ setMonochrome, setProgress }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/generate_animation_openai?prompt=${encodeURIComponent(
+        `http://107.143.94.67:5000/generate_animation_openai?prompt=${encodeURIComponent(
           prompt
         )}`,
         {
@@ -44,21 +44,21 @@ const Generator: React.FC<HomeProps> = ({ setMonochrome, setProgress }) => {
       const data = await response.json();
 
       if (data && data.video_path) {
-        const videoUrl = `http://localhost:5000/video${data.video_path}`;
+        const videoUrl = `http://107.143.94.67:5000/video${data.video_path}`;
 
         // Fire and forget the save request
-        fetch('http://localhost:5000/save_video', {
-          method: 'POST',
+        fetch("http://107.143.94.67:5000/save_video", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
             prompt: prompt,
             video: videoUrl,
             thumbnail: videoUrl,
-            user_id: user?.sub
-          })
-        }).catch(err => console.error('Error saving video:', err));
+            user_id: user?.sub,
+          }),
+        }).catch((err) => console.error("Error saving video:", err));
 
         // Navigate immediately without waiting for save
         navigate("/viewer", {
@@ -67,7 +67,6 @@ const Generator: React.FC<HomeProps> = ({ setMonochrome, setProgress }) => {
       } else {
         throw new Error("No video path received from API");
       }
-
     } catch (error) {
       console.error("Error:", error);
       setProgress(false);
@@ -79,8 +78,9 @@ const Generator: React.FC<HomeProps> = ({ setMonochrome, setProgress }) => {
     <>
       <Navbar />
       <div
-        className={`${hidden ? "hidden" : ""
-          } flex flex-col justify-center items-center gap-10 w-full h-full`}
+        className={`${
+          hidden ? "hidden" : ""
+        } flex flex-col justify-center items-center gap-10 w-full h-full`}
       >
         <h1 className="text-white font-bold text-5xl text-center">
           What would you like to understand?
