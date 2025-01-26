@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Landing from "./routes/Landing";
-import Home from "./routes/Home";
+import Home from "./routes/Generator";
 import Background from "./components/Background";
 import { useState } from "react";
 
@@ -15,7 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing setMonochrome={setMonochrome} />} />
           <Route
-            path="/app"
+            path="/generator"
             element={
               <Home setMonochrome={setMonochrome} setProgress={setProgress} />
             }

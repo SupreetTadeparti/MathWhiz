@@ -10,7 +10,7 @@ const Landing: React.FC<LandingProps> = ({ setMonochrome }) => {
   const navigate = useNavigate();
   const { loginWithPopup, isAuthenticated } = useAuth0();
 
-  if (isAuthenticated) navigate("/app");
+  if (isAuthenticated) navigate("/generator");
 
   setMonochrome(false);
 
