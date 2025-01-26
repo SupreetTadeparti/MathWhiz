@@ -104,70 +104,63 @@ const Background: React.FC<BackgroundProps> = ({ monochrome, progress }) => {
 
   return (
     <div
-      className={`${
-        monochrome && "monochrome"
-      } background fixed w-full h-full overflow-hidden -z-1 bg-gray-800`}
+      className={`${monochrome && "monochrome"
+        } background fixed inset-0 overflow-hidden -z-1 bg-gray-800`}
     >
       <div
-        className={`${
-          !progress ? "hidden" : ""
-        } phrase text-center fixed top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 text-white text-7xl z-1 ${fadeClass}`}
+        className={`${!progress ? "hidden" : ""
+          } absolute inset-0 flex items-center justify-center text-white hover:text-white active:text-white focus:text-white text-4xl md:text-5xl lg:text-7xl z-50 ${fadeClass}`}
       >
-        {phrases[phraseIndex]}
+        <div className="max-w-[90%] text-center text-white hover:text-white">
+          {phrases[phraseIndex]}
+        </div>
       </div>
+
       <div
-        className={`${
-          progressNums.includes(1) ? "active" : ""
-        }  text-red-500 text-[30rem] top-1/10 left-1/10 bg-symbol rotate-10`}
+        className={`${progressNums.includes(1) ? "active" : ""
+          } absolute text-red-500 text-[30rem] top-[10%] left-[10%] -translate-x-1/2 -translate-y-1/2 rotate-10`}
       >
         -
       </div>
       <div
-        className={`${
-          progressNums.includes(2) ? "active" : ""
-        }  text-yellow-500 text-[30rem] top-2/3 left-3/5 bg-symbol rotate-30`}
+        className={`${progressNums.includes(2) ? "active" : ""
+          } absolute text-yellow-500 text-[30rem] top-[66.67%] left-[75%] -translate-x-1/2 -translate-y-1/2 rotate-30`}
       >
         (
       </div>
       <div
-        className={`${
-          progressNums.includes(3) ? "active" : ""
-        }  text-purple-500 text-[22rem] top-1/2 -left-1/30 bg-symbol rotate-20`}
+        className={`${progressNums.includes(3) ? "active" : ""
+          } absolute text-purple-500 text-[22rem] top-[50%] left-[3.33%] -translate-x-1/2 -translate-y-1/2 rotate-15`}
       >
         Δ
       </div>
       <div
-        className={`${
-          progressNums.includes(4) ? "active" : ""
-        }  text-pink-500 text-[30rem] -top-1/8 left-6/7 bg-symbol -rotate-75`}
+        className={`${progressNums.includes(4) ? "active" : ""
+          } absolute text-pink-500 text-[30rem] top-[25%] left-[66.67%] -translate-x-1/2 -translate-y-1/2 -rotate-75`}
       >
         ∫
       </div>
       <div
-        className={`${
-          progressNums.includes(5) ? "active" : ""
-        }  text-red-500 text-[30rem] top-4/6 -left-1/25 bg-symbol rotate-80`}
+        className={`${progressNums.includes(5) ? "active" : ""
+          } absolute text-red-500 text-[30rem] top-[83.33%] left-[20%] -translate-x-1/2 -translate-y-1/2 rotate-45`}
       >
         +
       </div>
       <div
-        className={`${
-          progressNums.includes(6) ? "active" : ""
-        }  text-yellow-500 text-[30rem] top-1/8 left-1/6 bg-symbol rotate-40`}
+        className={`${progressNums.includes(6) ? "active" : ""
+          } absolute text-yellow-500 text-[30rem] top-[12.5%] left-[33.33%] -translate-x-1/2 -translate-y-1/2 rotate-30`}
       >
         ÷
       </div>
       <div
-        className={`${
-          progressNums.includes(7) ? "active" : ""
-        }  text-green-400 text-[30rem] top-1/5 left-11/14 bg-symbol rotate-25`}
+        className={`${progressNums.includes(7) ? "active" : ""
+          } absolute text-green-400 text-[30rem] top-[20%] left-[91.67%] -translate-x-1/2 -translate-y-1/2 rotate-30`}
       >
         =
       </div>
       <div
-        className={`${
-          progressNums.includes(8) ? "active" : ""
-        }  text-gray-300 text-[15rem] top-3/4 left-24/25  bg-symbol -rotate-20`}
+        className={`${progressNums.includes(8) ? "active" : ""
+          } absolute text-gray-300 text-[15rem] top-[80%] left-[91.67%] -translate-x-1/2 -translate-y-1/2 -rotate-30`}
       >
         dx
       </div>

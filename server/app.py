@@ -1,9 +1,9 @@
+from openai import OpenAI
 from flask import Flask, request, send_from_directory
 from flask_cors import CORS
 from manim_model import ManimModel
 import os
 from questions_create import create_question
-from openai import OpenAI
 from dotenv import load_dotenv
 from sqlalchemy import create_engine, text
 
@@ -28,6 +28,10 @@ app = Flask(__name__)
 CORS(app)
 
 engine = create_engine(os.getenv('DATABASE_URL'))
+
+@app.route("/")
+def index():
+    return "Hello, world!"
 
 @app.route("/generate_question", methods=["POST"])
 def generate_question():
@@ -58,7 +62,7 @@ def generate_animation_openai():
     )
 
     try:
-        script = completion.choices[0].message.content
+        script = completion.choices[0].message.content.replace("```python", "").replace("```", "")
         filename = manim_model.generate_unique_filename()
         video_path = manim_model.execute_animation(script, filename)
         if video_path and os.path.exists(video_path):

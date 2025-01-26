@@ -12,10 +12,11 @@ interface HomeProps {
 const Generator: React.FC<HomeProps> = ({ setMonochrome, setProgress }) => {
   let [hidden, setHidden] = useState(false);
   let [prompt, setPrompt] = useState("");
+  let [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
-  const { isAuthenticated } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -27,10 +28,11 @@ const Generator: React.FC<HomeProps> = ({ setMonochrome, setProgress }) => {
   const handleSubmit = async () => {
     setProgress(true);
     setHidden(true);
+    setIsLoading(true);
 
     try {
       const response = await fetch(
-        `http://localhost:5000/generate_animation_openai?prompt=${encodeURIComponent(
+        `http://api.mathwhiz.biz:5000/generate_animation_openai?prompt=${encodeURIComponent(
           prompt
         )}`,
         {
@@ -44,23 +46,42 @@ const Generator: React.FC<HomeProps> = ({ setMonochrome, setProgress }) => {
       const data = await response.json();
 
       if (data && data.video_path) {
-        const videoUrl = `http://localhost:5000/video${data.video_path}`;
+        const videoUrl = `http://api.mathwhiz.biz:5000/video${data.video_path}`;
+
+        // Fire and forget the save request
+        fetch('http://api.mathwhiz.biz:5000/save_video', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            prompt: prompt,
+            video: videoUrl,
+            thumbnail: videoUrl,
+            user_id: user?.sub
+          })
+        }).catch(err => console.error('Error saving video:', err));
+
+        // Navigate immediately without waiting for save
         navigate("/viewer", {
           state: { videoUrl },
         });
       } else {
         throw new Error("No video path received from API");
       }
+
     } catch (error) {
       console.error("Error:", error);
+    } finally {
       setProgress(false);
       setHidden(false);
+      setIsLoading(false);
     }
   };
 
   return (
     <>
-      <Navbar />
+      <Navbar disableMenu={isLoading} />
       <div
         className={`${hidden ? "hidden" : ""
           } flex flex-col justify-center items-center gap-10 w-full h-full`}
