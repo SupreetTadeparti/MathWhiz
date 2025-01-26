@@ -1,16 +1,18 @@
-from openai import OpenAI
-import os
-from dotenv import load_dotenv
+import requests
 
-load_dotenv() 
+# Worker URL
+worker_url = "https://openai-worker.rish-worker.workers.dev"
 
-openai_api_key = os.getenv("OPENAI_API_KEY")
+# Prompt to send to the Worker
+prompt = "Explain the Pythagorean theorem in simple terms."
 
+# Make the POST request to the Cloudflare Worker
+response = requests.post(worker_url, json={"prompt": prompt})
 
-client = OpenAI(api_key=openai_api_key)
-
-chat_completion = client.chat.completions.create(
-    model = "gpt-4o-mini",
-    messages = [{"role":"user", "content":"Instructions: You have to make 10 questions with 4 multiple answer choices for a quiz based on a prompt that will be given to you. The prompt is a request to explain a particular concept, and the user will be shown an educational video based on it. Based on the concepts, design the questions and the multiple answer choices for the quiz and list them in the format - Question : a) b) c) d). This is the prompt - 'Explain the Pythagoras Theorem' "}]
-)
-print(chat_completion.choices[0].message.content)
+# Check if the request was successful
+if response.status_code == 200:
+    print("Response from Worker:")
+    print(response.text)
+else:
+    print(f"Error: {response.status_code}")
+    print(response.text)
