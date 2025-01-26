@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, send_from_directory
 from manim_model import ManimModel
 import os
 import openai
@@ -23,6 +23,10 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     return "Hello, Flask!"
+
+@app.route('/video/<path:filename>')
+def serve_media(filename):
+    return send_from_directory('.', filename)
 
 @app.route('/generate_animation_openai')
 def generate_animation_openai():
@@ -51,7 +55,7 @@ def generate_animation_openai():
     except Exception as e:
         return {"error": str(e)}, 500
 
-@app.route('/generate_animation_legacy')
+@app.route('/generate_animation_finetuned')
 def generate_animation():
     prompt = request.args.get('prompt')
     if not prompt:
