@@ -1,4 +1,5 @@
 # 🧠 MathWhiz
+![image](https://github.com/user-attachments/assets/ab3869f4-7cfb-4067-80c0-e401d9d0765d)
 
 [MathWhiz](https://mathwhiz.biz) is an application that generates Manim videos for math and physics from user prompts along with quizzes, catering to the needs of teachers and students. With its intuitive features, users can easily create engaging educational content and test their knowledge.
 
